@@ -131,7 +131,8 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  const pathSegs = window.location.pathname.split('/').filter(Boolean);
+  document.documentElement.lang = (pathSegs.length > 0 && pathSegs[0].length === 2) ? pathSegs[0] : 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
